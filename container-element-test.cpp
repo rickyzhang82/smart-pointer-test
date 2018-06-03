@@ -10,6 +10,7 @@ class A
 public:
     A(int index): index(index) {cout<< "constructor of A with index: "<<index<< endl;};
     ~A(){cout<<"destructoro of A with index:"<<index<< endl;};
+    int getIndex() { return index; };
 private:
     int index;
 };
@@ -53,7 +54,15 @@ void demoMap()
 {
     cout<<"starting demo map"<<endl;
     auto m = getMap();
+    auto it = m->find(0);
+    auto pElement = it != m->end()? (*it).second: nullptr;
     m->clear();
+    cout<< "if A with 0 still exist? ";
+   if (pElement != nullptr && pElement->getIndex() == 0) {
+      cout << "true" <<endl;
+   } else {
+      cout << "false" <<endl;
+   }
     cout << "finished demo map" <<endl<<endl;
 }
 
